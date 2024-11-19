@@ -97,7 +97,7 @@ How to Use This Repository
 Clone this repository:
 bash
 
-git clone https://github.com/yourusername/pp3-pandas.git  
+
 Navigate to the project directory:
 bash
 Kopijuoti kodą
