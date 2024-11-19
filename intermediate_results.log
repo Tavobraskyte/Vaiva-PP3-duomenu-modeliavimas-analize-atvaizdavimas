@@ -1,0 +1,972 @@
+2024-11-18 19:57:08,171 - Importing pandas...
+2024-11-18 19:57:08,172 - Importing the dataset...
+2024-11-18 19:57:08,898 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-18 19:57:08,928 - Dataset info: None
+2024-11-18 19:57:08,932 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-18 19:57:08,943 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-18 19:57:08,962 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-18 19:57:08,977 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-18 19:57:09,000 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-18 19:57:09,001 - The most dangerous decade to live in the US is the 2000s.
+2024-11-18 19:57:09,001 - Importing pandas for merging...
+2024-11-18 19:57:09,018 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 19:57:09,018 - Assigned variables: data1, data2, data3
+2024-11-18 19:57:09,025 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-18 19:57:09,036 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-18 19:57:09,040 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 19:57:09,051 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-18 19:57:09,063 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-18 19:57:09,076 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-18 19:57:09,076 - Importing pandas for stats...
+2024-11-18 19:57:10,497 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
+2024-11-18 19:59:17,233 - Importing pandas...
+2024-11-18 19:59:17,235 - Importing the dataset...
+2024-11-18 19:59:18,048 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-18 19:59:18,076 - Dataset info: None
+2024-11-18 19:59:18,078 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-18 19:59:18,087 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-18 19:59:18,111 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-18 19:59:18,125 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-18 19:59:18,147 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-18 19:59:18,149 - The most dangerous decade to live in the US is the 2000s.
+2024-11-18 19:59:18,149 - Importing pandas for merging...
+2024-11-18 19:59:18,165 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 19:59:18,166 - Assigned variables: data1, data2, data3
+2024-11-18 19:59:18,172 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-18 19:59:18,183 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-18 19:59:18,188 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 19:59:18,198 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-18 19:59:18,211 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-18 19:59:18,223 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-18 19:59:18,223 - Importing pandas for stats...
+2024-11-18 19:59:19,770 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
+2024-11-18 20:15:05,071 - Importing pandas...
+2024-11-18 20:15:05,072 - Importing the dataset...
+2024-11-18 20:15:05,776 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-18 20:15:05,792 - Dataset info: None
+2024-11-18 20:15:05,793 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-18 20:15:05,797 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-18 20:15:05,815 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-18 20:15:05,830 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-18 20:15:05,849 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-18 20:15:05,851 - The most dangerous decade to live in the US is the 2000s.
+2024-11-18 20:15:05,851 - Importing pandas for merging...
+2024-11-18 20:15:05,869 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 20:15:05,869 - Assigned variables: data1, data2, data3
+2024-11-18 20:15:05,876 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-18 20:15:05,888 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-18 20:15:05,893 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-18 20:15:05,908 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-18 20:15:05,920 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-18 20:15:05,934 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-18 20:15:05,934 - Importing pandas for stats...
+2024-11-18 20:15:07,748 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
+2024-11-19 08:13:03,639 - Importing pandas...
+2024-11-19 08:13:03,640 - Importing the dataset...
+2024-11-19 08:13:04,413 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-19 08:13:04,441 - Dataset info: None
+2024-11-19 08:13:04,444 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-19 08:13:04,453 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-19 08:13:04,494 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-19 08:13:04,517 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-19 08:13:04,547 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-19 08:13:04,549 - The most dangerous decade to live in the US is the 2000s.
+2024-11-19 08:13:04,549 - Importing pandas for merging...
+2024-11-19 08:13:04,568 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 08:13:04,568 - Assigned variables: data1, data2, data3
+2024-11-19 08:13:04,575 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-19 08:13:04,587 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-19 08:13:04,592 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 08:13:04,603 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-19 08:13:04,618 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-19 08:13:04,640 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-19 08:13:04,640 - Importing pandas for stats...
+2024-11-19 08:13:06,013 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
+2024-11-19 12:38:34,843 - Importing pandas...
+2024-11-19 12:38:34,844 - Importing the dataset...
+2024-11-19 12:38:35,670 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-19 12:38:35,704 - Dataset info: None
+2024-11-19 12:38:35,708 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-19 12:38:35,722 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-19 12:38:35,761 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-19 12:38:35,789 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-19 12:38:35,823 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-19 12:38:35,825 - The most dangerous decade to live in the US is the 2000s.
+2024-11-19 12:38:35,825 - Importing pandas for merging...
+2024-11-19 12:38:35,859 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 12:38:35,860 - Assigned variables: data1, data2, data3
+2024-11-19 12:38:35,879 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-19 12:38:35,911 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-19 12:38:35,992 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 12:38:36,060 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-19 12:38:36,088 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-19 12:38:36,117 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-19 12:38:36,117 - Importing pandas for stats...
+2024-11-19 12:38:37,604 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
+2024-11-19 12:46:06,185 - Importing pandas...
+2024-11-19 12:46:06,186 - Importing the dataset...
+2024-11-19 12:46:07,088 - Dataset loaded. Here are the first few rows:
+   Year  Population    Total  ...  Burglary  Larceny_Theft  Vehicle_Theft
+0  1960   179323175  3384200  ...    912100        1855400         328200
+1  1961   182992000  3488000  ...    949600        1913000         336000
+2  1962   185771000  3752200  ...    994300        2089600         366800
+3  1963   188483000  4109500  ...   1086400        2297800         408300
+4  1964   191141000  4564600  ...   1213200        2514400         472800
+
+[5 rows x 12 columns]
+2024-11-19 12:46:07,115 - Dataset info: None
+2024-11-19 12:46:07,119 - Column types: Year                  int64
+Population            int64
+Total                 int64
+Violent               int64
+Property              int64
+Murder                int64
+Forcible_Rape         int64
+Robbery               int64
+Aggravated_assault    int64
+Burglary              int64
+Larceny_Theft         int64
+Vehicle_Theft         int64
+dtype: object
+2024-11-19 12:46:07,129 - Data types after conversion: Year                  datetime64[ns]
+Population                     int64
+Total                          int64
+Violent                        int64
+Property                       int64
+Murder                         int64
+Forcible_Rape                  int64
+Robbery                        int64
+Aggravated_assault             int64
+Burglary                       int64
+Larceny_Theft                  int64
+Vehicle_Theft                  int64
+dtype: object
+2024-11-19 12:46:07,158 - Dataset with Year as index:
+            Population    Total  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175  3384200  ...        1855400         328200
+1961-01-01   182992000  3488000  ...        1913000         336000
+1962-01-01   185771000  3752200  ...        2089600         366800
+1963-01-01   188483000  4109500  ...        2297800         408300
+1964-01-01   191141000  4564600  ...        2514400         472800
+
+[5 rows x 11 columns]
+2024-11-19 12:46:07,174 - Dataset after dropping 'Total' column:
+            Population  Violent  ...  Larceny_Theft  Vehicle_Theft
+Year                             ...                              
+1960-01-01   179323175   288460  ...        1855400         328200
+1961-01-01   182992000   289390  ...        1913000         336000
+1962-01-01   185771000   301510  ...        2089600         366800
+1963-01-01   188483000   316970  ...        2297800         408300
+1964-01-01   191141000   364220  ...        2514400         472800
+
+[5 rows x 10 columns]
+2024-11-19 12:46:07,194 - Grouped by decade:
+        Population   Violent   Property  ...  Burglary  Larceny_Theft  Vehicle_Theft
+Decade                                   ...                                        
+1960    1915053175   4134930   45160900  ...  13321100       26547700        5292100
+1970    2121193298   9607930   91383800  ...  28486000       53157800        9739900
+1980    2371370069  14074328  117048900  ...  33073494       72040253       11935411
+1990    2612825258  17527048  119053499  ...  26750015       77679366       14624418
+2000    2947969117  13968056  100944369  ...  21565176       67970291       11412834
+2010    1570146307   6072017   44095950  ...  10125170       30401698        3569080
+
+[6 rows x 10 columns]
+2024-11-19 12:46:07,196 - The most dangerous decade to live in the US is the 2000s.
+2024-11-19 12:46:07,196 - Importing pandas for merging...
+2024-11-19 12:46:07,213 - DataFrames created:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+  subject_id first_name last_name
+0          4      Billy    Bonder
+1          5      Brian     Black
+2          6       Bran   Balwner
+3          7      Bryce     Brice
+4          8      Betty    Btisan
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 12:46:07,213 - Assigned variables: data1, data2, data3
+2024-11-19 12:46:07,219 - All data concatenated along rows:
+  subject_id first_name last_name
+0          1       Alex  Anderson
+1          2        Amy  Ackerman
+2          3      Allen       Ali
+3          4      Alice      Aoni
+4          5     Ayoung   Atiches
+5          4      Billy    Bonder
+6          5      Brian     Black
+7          6       Bran   Balwner
+8          7      Bryce     Brice
+9          8      Betty    Btisan
+2024-11-19 12:46:07,231 - All data concatenated along columns:
+  subject_id first_name last_name subject_id first_name last_name
+0          1       Alex  Anderson          4      Billy    Bonder
+1          2        Amy  Ackerman          5      Brian     Black
+2          3      Allen       Ali          6       Bran   Balwner
+3          4      Alice      Aoni          7      Bryce     Brice
+4          5     Ayoung   Atiches          8      Betty    Btisan
+2024-11-19 12:46:07,236 - Data3:
+  subject_id  test_id
+0          1       51
+1          2       15
+2          3       15
+3          4       61
+4          5       16
+5          7       14
+6          8       15
+7          9        1
+8         10       61
+9         11       16
+2024-11-19 12:46:07,247 - Merged all_data and data3 on 'subject_id':
+  subject_id first_name last_name  test_id
+0          1       Alex  Anderson       51
+1          2        Amy  Ackerman       15
+2          3      Allen       Ali       15
+3          4      Alice      Aoni       61
+4          5     Ayoung   Atiches       16
+5          4      Billy    Bonder       61
+6          5      Brian     Black       16
+7          7      Bryce     Brice       14
+8          8      Betty    Btisan       15
+2024-11-19 12:46:07,262 - Merged data1 and data2 on common 'subject_id':
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          4        Alice        Aoni        Billy      Bonder
+1          5       Ayoung     Atiches        Brian       Black
+2024-11-19 12:46:07,280 - Full merge of data1 and data2 (outer join):
+  subject_id first_name_x last_name_x first_name_y last_name_y
+0          1         Alex    Anderson          NaN         NaN
+1          2          Amy    Ackerman          NaN         NaN
+2          3        Allen         Ali          NaN         NaN
+3          4        Alice        Aoni        Billy      Bonder
+4          5       Ayoung     Atiches        Brian       Black
+5          6          NaN         NaN         Bran     Balwner
+6          7          NaN         NaN        Bryce       Brice
+7          8          NaN         NaN        Betty      Btisan
+2024-11-19 12:46:07,280 - Importing pandas for stats...
+2024-11-19 12:46:08,566 - Wind dataset loaded. Here are the first few rows:
+   0   1   2      3      4      5   ...     9      10     11     12     13     14
+0  Yr  Mo  Dy    RPT    VAL    ROS  ...    DUB    CLA    MUL    CLO    BEL    MAL
+1  61   1   1  15.04  14.96  13.17  ...  13.67  10.25  10.83  12.58  18.50  15.04
+2  61   1   2  14.71    NaN  10.83  ...  11.50  10.04   9.79   9.67  17.54  13.83
+3  61   1   3  18.50  16.88  12.33  ...  11.25    NaN   8.50   7.67  12.75  12.71
+4  61   1   4  10.58   6.63  11.75  ...   8.63   1.79   5.83   5.88   5.46  10.88
+
+[5 rows x 15 columns]
